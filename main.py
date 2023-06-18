@@ -12,10 +12,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def quote():
-  return GPTGenerate("Fetch me an inspirational quote related to computer sciences")
+  return gpt("Fetch me an inspirational quote related to computer sciences")
 
 
-def GPTGenerate(prompt):
+def gpt(prompt):
     response = openai.ChatCompletion.create(
         model = "gpt-3.5-turbo",
         messages=[
