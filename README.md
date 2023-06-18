@@ -11,3 +11,5 @@ To run the plugin, enter the following command:
 ```bash
 python main.py
 ```
+
+Rename env.example to .env and provide your API KEY
