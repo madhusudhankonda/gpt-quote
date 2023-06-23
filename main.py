@@ -1,4 +1,5 @@
 import requests
+import streamlit as st
 import openai
 import os
 from dotenv import load_dotenv
@@ -10,9 +11,17 @@ openai.api_key = os.getenv("API_KEY")
 
 app = Flask(__name__)
 
+option = st.selectbox(
+    'Choose the type of the inspirational quote you wish to read:',
+    ('Religious', 'Historic', 'Scientific', 'Computer Sciences', 'Other'))
+
 @app.route("/")
 def quote():
-  return gpt("Fetch me an inspirational quote related to computer sciences")
+  prompt = "Fetch me an inspirational quote related to ",option
+  
+  print("Prompt is: ", prompt)
+  
+  return gpt(prompt)
 
 
 def gpt(prompt):
@@ -36,5 +45,5 @@ def serve_ai_plugin():
 def serve_openapi_yaml():
   return send_from_directory('.', 'openapi.yaml', mimetype='text/yaml')
 
-if __name__ == "__main__":
-  app.run(host='0.0.0.0', port=81)
+# if __name__ == "__main__":
+#   app.run(host='0.0.0.0', port=81)
